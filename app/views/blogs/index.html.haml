@@ -1,0 +1,20 @@
+.contents.row
+  %ul.list_article
+    - @articles.each do |article|
+      %li.list_article__contents-post
+        .list_article__contents-post__box
+          %h2.list_article__contents-post__title= article.title
+          - if article.image != ""
+            %p
+              %img.list_article__contents-post__image{:src => "#{article.image}"}/
+          %p.list_article__contents-post__created_at= article.created_at
+          %p.list_article__contents-post__content= article.content
+          - if user_signed_in? && current_user.id == article.user_id
+            %ul
+              %li.list_article__contents-post__edit-btn= link_to '編集', "/blogs/#{article.id}/edit", method: :get
+              %li.list_article__contents-post__delete-btn= link_to '削除', "/blogs/#{article.id}", method: :delete
+  = paginate(@articles)
+
+%footer.page-footer
+  %p
+    Reiwa curry is spicy 2019.

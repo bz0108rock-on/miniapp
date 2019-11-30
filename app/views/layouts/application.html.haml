@@ -1,0 +1,29 @@
+!!!
+%html{:lang => "ja"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %title Mini App
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    :javascript
+
+  %body
+    %header.page-header
+      .page-header__title
+        Mini App
+      - if user_signed_in?
+        %p.page-header__name
+          ユーザー：#{current_user.nickname}さん
+        %nav
+          %ul.page-header__main-nav
+            .page-header__main-nav__new-btn
+              %a{:href => "/new"} 新規投稿
+            .page-header__main-nav__user-btn
+              %li= link_to "ログアウト", destroy_user_session_path, method: :delete
+      - else
+        %ul.page-header__main-nav__registration
+          %li.page-header__main-nav__registration__login-btn= link_to "ログイン", new_user_session_path, class: 'post'
+          %li.page-header__main-nav__registration__registration-btn= link_to "新規登録", new_user_registration_path, class: 'post'
+    = yield

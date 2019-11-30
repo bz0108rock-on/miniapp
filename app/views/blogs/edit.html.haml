@@ -1,0 +1,12 @@
+.contents.row
+  %a{:href => "/"} 一覧にもどる
+  = form_tag("/blogs/#{@article.id}", method: :patch) do
+    %h3
+      編集する
+    %p
+      %input{:name => "title", :placeholder => "タイトル", :type => "text", :value => "#{@article.title}"}/
+    %p
+      %input{:name => "image", :placeholder => "Image Url", :type => "text", :value => "#{@article.image}"}/
+    %textarea{:cols => "50", :name => "content", :placeholder => "記事を書いてください", :rows => "10"}= @article.content
+    %p
+      %input{:type => "submit", :value => "投稿"}/
