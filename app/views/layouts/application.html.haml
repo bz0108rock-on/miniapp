@@ -23,7 +23,7 @@
             .page-header__main-nav__user-btn
               %li= link_to "ログアウト", destroy_user_session_path, method: :delete
       - else
-        %ul.page-header__main-nav__registration
-          %li.page-header__main-nav__registration__login-btn= link_to "ログイン", new_user_session_path, class: 'post'
-          %li.page-header__main-nav__registration__registration-btn= link_to "新規登録", new_user_registration_path, class: 'post'
+        %ul.page-header__sub-nav__registration
+          %li.page-header__sub-nav__registration__login-btn= link_to "ログイン", new_user_session_path, class: 'post'
+          %li.page-header__sub-nav__registration__registration-btn= link_to "新規登録", new_user_registration_path, class: 'post'
     = yield
